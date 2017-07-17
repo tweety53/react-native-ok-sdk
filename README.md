@@ -3,11 +3,9 @@ React Native OK SDK is a wrapper around the iOS OK SDK and Android OK SDK, allow
 
 ## GIVE FEEDBACK
 Please post questions on sdk set up to stackoverflow for quicker response. Besides it's easier for others searching for similar questions.
-Report bugs or issues of this package to https://github.com/askiiRobotics/react-native-ok-sdk/issues 
-Report bugs of IOS OK SDK to https://github.com/odnoklassniki/ok-ios-sdk/issues
-Report bugs of Android SDK to https://github.com/odnoklassniki/ok-android-sdk/issues
-
-Also there is the chat for contact with OK SDK developers: https://t.me/OkAnfroidSdk 
+Report bugs or issues of this package to [react-native-ok-sdk/issues](https://github.com/askiiRobotics/react-native-ok-sdk/issues).
+Report bugs of IOS OK SDK to [ok-ios-sdk/issues](https://github.com/odnoklassniki/ok-ios-sdk/issues) or via [Telegram](https://telegram.me/joinchat/An0xvgHDHvWlSWNQWuzOkQ).
+Report bugs of Android SDK to [ok-android-sdk/issues](https://github.com/odnoklassniki/ok-android-sdk/issues) or via [Telegram](https://t.me/OkAnfroidSdk).
 
 ## Installation
 You need to install the sdk with [npm](https://www.npmjs.com/) and configure native Android/iOS project in the react native project.
@@ -157,7 +155,6 @@ Add OKSDK.h and OKSDK.m to your project. For example you can use git submodule.
   - Your XCode version is too old, upgrade to XCode 8.0+.
 
 ## Usage
-### [Login](https://developers.facebook.com/docs/facebook-login)
 #### Login Button + Access Token
 ```js
 ...
@@ -198,4 +195,4 @@ class LoginButton extends React.Component {
 ```
 
 ## License
-See the LICENSE file.
+MIT
