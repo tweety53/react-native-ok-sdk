@@ -195,4 +195,4 @@ class LoginButton extends React.Component {
 ```
 
 ## License
-MIT
+See the LICENSE file.
