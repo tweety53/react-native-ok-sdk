@@ -1,0 +1,32 @@
+{
+  "name": "react-native-ok-sdk",
+  "version": "0.0.1",
+  "description": "OK SDK support for React Native apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/askiiRobotics/react-native-ok-sdk.git"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "react-component",
+    "ok",
+    "odnoklassniki",
+    "sdk",
+    "login",
+    "android",
+    "ios"
+  ],
+  "author": {
+    "name": "Alex Belets"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/askiiRobotics/react-native-ok-sdk/issues"
+  },
+  "homepage": "https://github.com/askiiRobotics/react-native-ok-sdk#readme"
+}
