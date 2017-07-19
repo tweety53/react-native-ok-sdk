@@ -4,7 +4,16 @@
   "description": "OK SDK support for React Native apps",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run:packager": "./node_modules/react-native/packager/packager.sh",
+    "run:ios": "react-native run-ios --project-path ./example/ios",
+    "start:android": "adb shell am start -n com.example/.MainActivity",
+    "run:android": "./gradlew installDebug && npm run start:android",
+    "lint": "eslint ./",
+    "ci": "npm run lint",
+    "build:pods": "cd example/ios; bundle exec pod install; cd -",
+    "publish:maven": "./gradlew clean check uploadArchives"
   },
   "repository": {
     "type": "git",
@@ -21,6 +30,21 @@
     "android",
     "ios"
   ],
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "babel-plugin-module-resolver": "^2.3.0",
+    "babel-preset-airbnb": "^1.1.1",
+    "babel-preset-react-native": "2.0.0",
+    "eslint": "^3.3.1",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-import-resolver-babel-module": "^2.2.1",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.1.0",
+    "eslint-plugin-prefer-object-spread": "^1.1.0",
+    "eslint-plugin-react": "^6.1.2",
+    "react": "16.0.0-alpha.12",
+    "react-native": "0.45.1"
+  },
   "author": "Alex Belets",
   "license": "MIT",
   "bugs": {
