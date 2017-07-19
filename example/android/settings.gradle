@@ -1,3 +1,5 @@
 rootProject.name = 'example'
+include ':react-native-ok-sdk'
+project(':react-native-ok-sdk').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-ok-sdk/android')
 
 include ':app'

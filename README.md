@@ -3,9 +3,13 @@ React Native OK SDK is a wrapper around the iOS OK SDK and Android OK SDK, allow
 
 ## GIVE FEEDBACK
 Please post questions on sdk set up to stackoverflow for quicker response. Besides it's easier for others searching for similar questions.
+
 Report bugs or issues of this package to [react-native-ok-sdk/issues](https://github.com/askiiRobotics/react-native-ok-sdk/issues).
+
 Report bugs of IOS OK SDK to [ok-ios-sdk/issues](https://github.com/odnoklassniki/ok-ios-sdk/issues) or via [Telegram](https://telegram.me/joinchat/An0xvgHDHvWlSWNQWuzOkQ).
+
 Report bugs of Android SDK to [ok-android-sdk/issues](https://github.com/odnoklassniki/ok-android-sdk/issues) or via [Telegram](https://t.me/OkAnfroidSdk).
+
 
 ## Installation
 You need to install the sdk with [npm](https://www.npmjs.com/) and configure native Android/iOS project in the react native project.
@@ -21,16 +25,24 @@ react-native init YourApp
 Install and link the react-native-ok-sdk package:
 ```ruby
 react-native install react-native-ok-sdk
-react-native link react-native-ok-sdk
 ```
 ### 3. Configure native projects
 
 #### 3.1 Android project
+You can do this with automatically with this command
+```ruby
+react-native link react-native-ok-sdk
+```
+and skip first three steps of followed guide. 
+**IMPORTANT**: Step 4 is required in every case.
+
+Or you can do it manually: 
+
 Assuming you have [Android Studio](http://developer.android.com/sdk/index.html) installed, open the project with Android Studio.
 
 **This instruction provided for react-native version is 0.29 or above**
 
-Go to `MainApplication.java` under `app/src/main/java/com/<project name>/` to complete setup.
+1. Go to `MainApplication.java` under `app/src/main/java/com/<project name>/` to complete setup.
 
 In `MainApplication.java` import package related to react-native-ok-sdk.
 
@@ -43,7 +55,7 @@ public class MainApplication extends Application implements ReactApplication {
 }
 ```
 
-Register sdk package in method `getPackages()`.
+2. Register sdk package in method `getPackages()`.
 ```java
 ...
 
@@ -61,7 +73,7 @@ public class MainApplication extends Application implements ReactApplication {
 }
 ```
 
-Next go to `android/settings.gradle` and add followed lines:
+3. Next go to `android/settings.gradle` and add followed lines:
 ```gradle
     ...
 
@@ -79,7 +91,7 @@ and to `android/app/build.gradle`:
     }
 ```
 
-In your `AndroidManifest.xml`, add following line inside `<application>` element:
+4. In your `AndroidManifest.xml`, add following line inside `<application>` element:
 ```xml
     <activity
             android:name="ru.ok.android.sdk.OkAuthActivity"
@@ -105,15 +117,68 @@ Make sure that your `AndroidManifest.xml` contains inside `<manifest>` element f
 ```
 
 #### 3.2 IOS Project
-Add ok{appId} schema to your app Info.plist file. For example ok12345 if your app has appId 12345. Don't forget add ok{appId}://authorize to allowed redirect urls for your application in ok.ru app profile. Also you should add next block to your Info.plist file.
+
+1. In the folder of your project run: 
+```ruby
+react-native link react-native-ok-sdk
+```
+
+2. Add ok{appId} schema to your app Info.plist file. For example ok12345 if your app has appId 12345. Don't forget add ok{appId}://authorize to allowed redirect urls for your application in ok.ru app profile. You can do this via XCode of manually:
+
+```xml
+ <key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>ru.ok</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>ok12345</string>
+			</array>
+		</dict>
+    ...
+	</array>
+  ...
+  <key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>ok12345</string>
+		<string>okauth</string>
+    ...
+	</array>
+  ...  
+	<key>item0</key>
+	<string>okauth</string>
+	<key>item1</key>
+	<string>ok12345</string>
+  ...
+```
+
+
+Also you should add next block to your Info.plist file.
 
 ```xml
  <key>NSAppTransportSecurity</key>
     <dict>
         <key>NSAllowsArbitraryLoads</key>
         <true/>
+        ...
     </dict>
 ```
+
+**If you use PodSec**
+1. To add CocoaPods to your React Native project, follow steps 2 throught 7 of [this](https://blog.callstack.io/login-users-with-facebook-in-react-native-4b230b847899#.lai35aq3a) tutorial.
+Add this line:
+
+    ```ruby
+    pod 'react-native-ok-sdk', :path => '../node_modules/react-native-ok-sdk/ios'
+    ```
+
+to your Podfile (you may need to adjust path if you have non-standard project structure).
+Don't forget to fix linker errors by adding `$(inherited)` to **Other Linker Flags** in Build Settings:
+
+<img src="https://raw.githubusercontent.com/doomsower/react-native-vkontakte-login/master/images/other_linker_flags.png" alt="xcode url type" />
 
 **If you not use PodSec** 
 Add OKSDK.h and OKSDK.m to your project. For example you can use git submodule.
@@ -193,6 +258,8 @@ class LoginButton extends React.Component {
   }
 }
 ```
+
+See full example in `./example` folder.
 
 ## License
 See the LICENSE file.
