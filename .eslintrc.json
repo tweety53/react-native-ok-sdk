@@ -20,8 +20,8 @@
             4
         ],
         "linebreak-style": [
-            "error",
-            "windows"
+            "warn",
+            "unix"
         ],
         "quotes": [
             "error",
