@@ -22,7 +22,7 @@ import ru.ok.android.sdk.OkListener;
 import ru.ok.android.sdk.Shared;
 import ru.ok.android.sdk.util.OkAuthType;
 
-public class OkModule extends ReactContextBaseJavaModule implements ActivityEventListener {
+public class OkManagerModule extends ReactContextBaseJavaModule implements ActivityEventListener {
     private static final String LOG = "OkManager";
     private static final String E_LOGIN_ERROR = "E_LOGIN_ERROR";
     private static final String E_GET_USER_FAILED = "E_GET_USER_FAILED";
