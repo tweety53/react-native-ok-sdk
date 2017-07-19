@@ -1,7 +1,6 @@
 # React Native OK SDK
+[![npm Version](https://img.shields.io/npm/v/react-native-ok-sdk.svg)](https://www.npmjs.com/package/react-native-ok-sdk) [![License](https://img.shields.io/npm/l/react-native-ok-sdk.svg)](https://www.npmjs.com/package/react-native-ok-sdk) [![Build Status](https://travis-ci.org/airbnb/react-native-ok-sdk.svg)](https://travis-ci.org/askiiRobotics/react-native-ok-sdk)
 ===
-
-[![npm Version](https://img.shields.io/npm/v/react-native-ok-sdk.svg)](https://www.npmjs.com/package/react-native-ok-sdk) [![License](https://img.shields.io/npm/l/react-native-ok-sdk.svg)](https://www.npmjs.com/package/react-native-ok-sdk) [![Build Status](https://travis-ci.org/airbnb/react-native-ok-sdk.svg)](https://travis-ci.org/airbnb/react-native-ok-sdk)
 
 React Native OK SDK is a wrapper around the iOS OK SDK and Android OK SDK, allowing for OK integration in [React Native](https://facebook.github.io/react-native/) apps. Access to native components for login is provided entirely through documented JavaScript modules so you don't have to call a single native function directly.
 
