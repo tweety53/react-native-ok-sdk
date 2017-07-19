@@ -79,13 +79,12 @@ public class OkManagerModule extends ReactContextBaseJavaModule implements Activ
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(final Activity activity, final int requestCode, final int resultCode, final Intent intent) {
         if (Odnoklassniki.getInstance().isActivityRequestOAuth(requestCode)) {
-            Odnoklassniki.getInstance().onAuthActivityResult(requestCode, resultCode, data, getAuthListener());
+            Odnoklassniki.getInstance().onAuthActivityResult(requestCode, resultCode, intent, getAuthListener());
         }
     }
 
-    @NonNull
     private OkListener getAuthListener() {
         return new OkListener() {
             @Override
@@ -107,7 +106,7 @@ public class OkManagerModule extends ReactContextBaseJavaModule implements Activ
             @Override
             public void run() {
                 try {
-                    String userStr = odnoklassniki.request("users.getCurrentUser", "get");
+                    String userStr = odnoklassniki.request("users.getCurrentUser", null, "get");
                     JSONObject user = new JSONObject(userStr);
                     WritableMap result = Arguments.createMap();
                     result.putString(Shared.PARAM_ACCESS_TOKEN, accessToken);
@@ -121,4 +120,8 @@ public class OkManagerModule extends ReactContextBaseJavaModule implements Activ
         }).start();
     }
 
+	@Override
+	public void onNewIntent(Intent intent) {
+
+	}
 }
