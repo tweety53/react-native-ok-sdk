@@ -1,6 +1,6 @@
 package com.askiirobotics.reactnativeoksdk;
 
-import com.askiirobotics.reactnativeoksdk.OkManagerModule;
+import com.askiirobotics.reactnativeoksdk.OkModule;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.bridge.NativeModule;
@@ -18,11 +18,10 @@ public class OkPackage implements ReactPackage {
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
 
-        modules.add(new OkManagerModule(reactContext));
+        modules.add(new OkModule(reactContext));
         return modules;
     }
 
-    @Override
     public List<Class<? extends JavaScriptModule>> createJSModules() {
         return Collections.emptyList();
     }

@@ -3,6 +3,7 @@ package com.askiirobotics.reactnativeoksdk;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
+
 import com.facebook.react.bridge.*;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
@@ -21,8 +22,9 @@ import ru.ok.android.sdk.Odnoklassniki;
 import ru.ok.android.sdk.OkListener;
 import ru.ok.android.sdk.Shared;
 import ru.ok.android.sdk.util.OkAuthType;
+import ru.ok.android.sdk.OkRequestMode;
 
-public class OkManagerModule extends ReactContextBaseJavaModule implements ActivityEventListener {
+public class OkModule extends ReactContextBaseJavaModule implements ActivityEventListener {
     private static final String LOG = "OkManager";
     private static final String E_LOGIN_ERROR = "E_LOGIN_ERROR";
     private static final String E_GET_USER_FAILED = "E_GET_USER_FAILED";
@@ -31,7 +33,7 @@ public class OkManagerModule extends ReactContextBaseJavaModule implements Activ
     private String redirectUri;
     private Promise loginPromise;
 
-    public OkManagerModule(final ReactApplicationContext reactContext) {
+    public OkModule(final ReactApplicationContext reactContext) {
         super(reactContext);
         reactContext.addActivityEventListener(this);
     }
@@ -79,9 +81,9 @@ public class OkManagerModule extends ReactContextBaseJavaModule implements Activ
     }
 
     @Override
-    public void onActivityResult(final Activity activity, final int requestCode, final int resultCode, final Intent intent) {
+    public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
         if (Odnoklassniki.getInstance().isActivityRequestOAuth(requestCode)) {
-            Odnoklassniki.getInstance().onAuthActivityResult(requestCode, resultCode, intent, getAuthListener());
+            Odnoklassniki.getInstance().onAuthActivityResult(requestCode, resultCode, data, getAuthListener());
         }
     }
 
@@ -101,12 +103,12 @@ public class OkManagerModule extends ReactContextBaseJavaModule implements Activ
         };
     }
 
-    private void resolveWithCurrentUser(final String accessToken, final String sessionSecretKey){
+    private void resolveWithCurrentUser(final String accessToken, final String sessionSecretKey) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    String userStr = odnoklassniki.request("users.getCurrentUser", null, "get");
+                    String userStr = odnoklassniki.request("users.getCurrentUser", null, OkRequestMode.DEFAULT);
                     JSONObject user = new JSONObject(userStr);
                     WritableMap result = Arguments.createMap();
                     result.putString(Shared.PARAM_ACCESS_TOKEN, accessToken);
@@ -120,8 +122,9 @@ public class OkManagerModule extends ReactContextBaseJavaModule implements Activ
         }).start();
     }
 
-	@Override
-	public void onNewIntent(Intent intent) {
+    @Override
+    public void onNewIntent(Intent intent) {
 
-	}
+    }
+
 }
